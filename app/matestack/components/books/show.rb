@@ -1,4 +1,7 @@
 class Components::Books::Show < Matestack::Ui::Component
+
+  required :book
+
   def response
     bs_card body: book.title,
       header: { text: book.description, class: "text-center h3" }
@@ -6,8 +9,7 @@ class Components::Books::Show < Matestack::Ui::Component
 
   private
 
-  def book
-    Book.find(params[:id])
-  end
-
+    def book
+      context.book
+    end
 end

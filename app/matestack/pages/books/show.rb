@@ -1,11 +1,11 @@
 class Pages::Books::Show < ApplicationPage
+
+  required :book
+
   def response
-    bs_container size: :fluid do
-      Components::Shared::Navbar.call
-      div class: "container" do
-        bs_breadcrumb items: items, class: 'my-breadcrumb'
-        Components::Books::Show.call
-      end
+    div class: "container" do
+      bs_breadcrumb items: items, class: 'my-breadcrumb'
+      Components::Books::Show.call(book: book)
     end
   end
 
@@ -20,6 +20,6 @@ class Pages::Books::Show < ApplicationPage
     end
 
     def book
-      Book.find(params[:id])
+      context.book
     end
 end

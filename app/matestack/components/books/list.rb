@@ -1,13 +1,9 @@
 class Components::Books::List < Matestack::Ui::Component
-  def response
-    bs_list_group  items: list_books_group
 
-    # books.each do |book|
-    #   bs_row horizontal: :start, vertical: :center do
-    #     h5 book.title if book.title.present?
-    #     paragraph book.description, class: "card-text"
-    #   end
-    # end
+  required :books
+
+  def response
+    bs_list_group items: list_books_group
   end
 
   private
@@ -23,7 +19,8 @@ class Components::Books::List < Matestack::Ui::Component
       end
     end
 
+    # TODO: Remove this use context.books instead
     def books
-      Book.all
+      context.books
     end
 end

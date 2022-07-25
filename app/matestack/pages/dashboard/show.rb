@@ -1,18 +1,7 @@
 class Pages::Dashboard::Show < ApplicationPage
   def response
-    bs_container size: :fluid do
-      Components::Shared::Navbar.call
-      div class: "container" do
-        bs_breadcrumb items: items, class: 'my-breadcrumb'
-      end
+    div class: "container" do
+      h1 'Home page'
     end
   end
-
-  private
-
-    def items
-      [
-        { path: root_path, text: 'Home' }
-      ]
-    end
 end

@@ -1,11 +1,11 @@
 class Pages::Books::Index < ApplicationPage
+
+  required :books
+
   def response
-    bs_container size: :fluid do
-      Components::Shared::Navbar.call
-      div class: "container" do
-        bs_breadcrumb items: items, class: 'my-breadcrumb'
-        Components::Books::List.call
-      end
+    div class: "container" do
+      bs_breadcrumb items: items, class: 'my-breadcrumb'
+      Components::Books::List.call(books: books)
     end
   end
 
@@ -15,5 +15,9 @@ class Pages::Books::Index < ApplicationPage
         {path: root_path, text: 'Home', type: :link},
         {path: books_path, text: 'Books'}
       ]
+    end
+
+    def books
+      context.books
     end
 end
