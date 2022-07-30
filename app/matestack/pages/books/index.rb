@@ -5,6 +5,9 @@ class Pages::Books::Index < ApplicationPage
   def response
     div class: "container" do
       bs_breadcrumb items: items, class: 'my-breadcrumb'
+      transition path: new_book_path, delay: 300 do
+        bs_btn "New Book", variant: :link
+      end
       Components::Books::List.call(books: books)
     end
   end
