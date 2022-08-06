@@ -43,7 +43,7 @@ class Components::Books::List < Matestack::Ui::Component
     end
 
     def table_item_actions(book)
-      transition path: edit_book_path(book), delay: 300 do
+      transition path: book_path(book), delay: 300 do
         bs_btn outline: true, size: :sm, variant: :primary do
           bs_icon name: 'arrow-right', size: 20
         end

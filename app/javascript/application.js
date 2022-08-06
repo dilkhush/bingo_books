@@ -2,11 +2,17 @@
 import "@hotwired/turbo-rails"
 import { createApp } from 'vue'
 import MatestackUiVueJs from 'matestack-ui-vuejs'
-import MatestackUiBootstrap from 'matestack-ui-bootstrap' // add this
+import MatestackUiBootstrap from 'matestack-ui-bootstrap'
+// import VueResource from "vue-resource"
+// import vueResourceDistVueResource from "vue-resource/dist/vue-resource.common"
 
 const appInstance = createApp({})
 
-MatestackUiBootstrap.registerComponents(appInstance) // add this
+import commentsListComponent from 'comments_list_component'
+
+appInstance.component('comments-list-component', commentsListComponent)
+
+MatestackUiBootstrap.registerComponents(appInstance)
 
 document.addEventListener('DOMContentLoaded', () => {
   MatestackUiVueJs.mount(appInstance)
