@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
       @comment = comments.find(params[:id])
     end
 
-    def comments
+    def set_comments
       @comments = @book.comments
     end
 

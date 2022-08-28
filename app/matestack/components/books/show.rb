@@ -5,7 +5,7 @@ class Components::Books::Show < Matestack::Ui::Component
   def response
     bs_card body: book.title,
       header: { text: book.description, class: "text-center h3" }
-    Components::Comments::List.call(comments: comments)
+    Components::Comments::List.call(book_id: book.id)
   end
 
   private

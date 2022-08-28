@@ -1,18 +1,20 @@
 class Components::Comments::List < Matestack::Ui::VueJsComponent
 
-  required :comments
+  required :book_id
 
   vue_name "comments-list-component"
 
   def response
     div class: "comments-list-root-element" do
-      plain "{{ vc.comments }}"
+      div 'v-for': 'comment in vc.comments' do
+        bs_card title: "{{comment.body}}"
+      end
     end
   end
 
   def vue_props
     {
-      comments: context.comments
+      book_id: context.book_id
     }
   end
 end

@@ -5,25 +5,21 @@ const commentsListComponent = {
   template: MatestackUiVueJs.componentHelpers.inlineTemplate,
   data() {
     return {
-      comments: this.props['comments']
+      comments: []
     };
   },
   methods: {
-    getComments(payload){
-      this.$http.get('/books/2/comments').then(
-        function(response){
-          this.comments = response;
-        }, function() {
-          this.comments = 'error';
-        }
-      )
+    async getComments(book_id){
+      const response = await fetch('/books/'+book_id+'/comments.json');
+      let response_data = await response.json();
+      this.comments = response_data;
     }
   },
-  mounted(){
-    // this.getComments(this.props['book_id']);
-    MatestackUiVueJs.eventHub.$on("get-comments-event", this.getComments)
+  mounted() {
+    this.getComments(this.props['book_id']);
+    // MatestackUiVueJs.eventHub.$on("get-comments-event", this.getComments)
   },
-  beforeUnmount(){
+  beforeUnmount() {
     MatestackUiVueJs.eventHub.$off("get-comments-event", this.getComments)
   }
 }
